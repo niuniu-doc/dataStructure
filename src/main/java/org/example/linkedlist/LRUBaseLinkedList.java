@@ -1,6 +1,6 @@
 package org.example.linkedlist;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 基于单链表LRU算法
