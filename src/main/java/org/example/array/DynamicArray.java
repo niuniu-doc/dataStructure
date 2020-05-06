@@ -1,10 +1,5 @@
 package org.example.array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.concurrent.ConcurrentHashMap;
-
 public class DynamicArray<E> {
     private E[] data;
     private int size;
@@ -14,6 +9,15 @@ public class DynamicArray<E> {
     public DynamicArray(int capacity) {
         data = (E[])new Object[capacity];
         size = 0;
+    }
+
+    // 构造函数, 纯如数组容量capacity构造Array
+    public DynamicArray(E[] arr) {
+        data = (E[])new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
     }
 
     // 默认构造函数
@@ -69,12 +73,20 @@ public class DynamicArray<E> {
     }
 
     // 获取index索引位置的元素
-    public E get(int index) throws Exception{
-        if (index < 0 || index >= size) throw new Exception("error.");
+    public E get(int index) {
+        if (index < 0 || index >= size) System.out.println(("error."));
         return data[index];
     }
 
-    void set(int index, E e) {
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size) System.out.println("swap error.");
+
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
+    }
+
+    public void set(int index, E e) {
         if (index < 0 || index >= size) return ;
         data[index] = e;
     }
@@ -109,9 +121,9 @@ public class DynamicArray<E> {
      * 从数组中删除元素, 并返回该位置的元素
      * @return
      */
-    public E remove(int index) throws Exception {
+    public E remove(int index){
         if (index < 0 || index >= size) {
-            throw new Exception("e");
+            System.out.println("e");
         }
 
         E ret = data[index];
@@ -125,11 +137,11 @@ public class DynamicArray<E> {
         return ret;
     }
 
-    public E removeFirst() throws Exception{
+    public E removeFirst() {
         return remove(0);
     }
 
-    public E removeLast() throws Exception{
+    public E removeLast() {
         return remove(size-1);
     }
 
