@@ -144,6 +144,10 @@ public class DummyHeadLinekdList<E> {
         cur.e = e;
     }
 
+    public void removeElement(E e) {
+
+    }
+
     public boolean contains(E e) {
         Node cur = dummyHead.next;
         while (cur != null) {

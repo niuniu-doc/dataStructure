@@ -1,5 +1,6 @@
 package org.example.bst;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
