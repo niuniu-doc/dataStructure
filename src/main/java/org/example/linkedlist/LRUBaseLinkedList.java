@@ -1,6 +1,5 @@
 package org.example.linkedlist;
 
-import java.util.Comparator;
 import java.util.Scanner;
 
 /**

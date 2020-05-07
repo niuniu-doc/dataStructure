@@ -1,6 +1,8 @@
 package org.example.array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class GenericArray<T> {
     private T[] data; // 数组
