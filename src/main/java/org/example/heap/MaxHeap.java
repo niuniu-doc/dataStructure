@@ -112,26 +112,40 @@ public class MaxHeap<E extends  Comparable<E>> {
 
 
     public static void main(String[] args) {
-        int n = 2;
-
-        MaxHeap<Integer> maxHeap = new MaxHeap<>();
+//        int n = 2;
+//
+//        MaxHeap<Integer> maxHeap = new MaxHeap<>();
+//        Random random = new Random();
+//        for (int i = 0; i < n; i++) {
+//            maxHeap.add(random.nextInt(Integer.MAX_VALUE));
+//        }
+//
+//        int[] arr = new int[n];
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = maxHeap.extractMax();
+//        }
+//
+//        for (int i = 1; i < n; i++) {
+//            if (arr[i-1] < arr[i]) {
+//                System.out.println("maxHeap error.");
+//            }
+//        }
+//
+//        System.out.println("test maxHeap competed.");
+//
+        int n = 1000000;
         Random random = new Random();
-        for (int i = 0; i < n; i++) {
-            maxHeap.add(random.nextInt(Integer.MAX_VALUE));
+        Integer[] testData = new Integer[n];
+        for (int i = 0;  i < n; i++) {
+            testData[i] = random.nextInt(Integer.MAX_VALUE);
         }
 
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = maxHeap.extractMax();
-        }
+        double time1 = testHeap(testData, false);
+        System.out.println("with heapify: " + time1 + " s");
 
-        for (int i = 1; i < n; i++) {
-            if (arr[i-1] < arr[i]) {
-                System.out.println("maxHeap error.");
-            }
-        }
+        double time2 = testHeap(testData, true);
+        System.out.println("with heapify: " + time2 + " s");
 
-        System.out.println("test maxHeap competed.");
     }
 
     private static double testHeap(Integer[] testData, boolean isHeapify) {
@@ -147,7 +161,8 @@ public class MaxHeap<E extends  Comparable<E>> {
         }
         long endTime = System.nanoTime();
 
-        System.out.println("useTime: " + (endTime - starTime)/100000000.0 + " s");
-        return  (endTime - starTime)/100000000.0;
+        System.out.println("useTime: " + (endTime - starTime)/1000000000.0 + " s");
+        return (endTime - starTime) / 1000000000.0;
     }
+
 }
