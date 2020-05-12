@@ -148,5 +148,6 @@ public class MaxHeap<E extends  Comparable<E>> {
         long endTime = System.nanoTime();
 
         System.out.println("useTime: " + (endTime - starTime)/100000000.0 + " s");
+        return  (endTime - starTime)/100000000.0;
     }
 }

@@ -15,6 +15,16 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        assertTrue( true );
+        int a = 4;
+        if (a == 4) {
+            System.out.println("case 1");
+        } else if (a == 2 ) {
+            System.out.println("case 2");
+        } else {
+            System.out.println("case 3");
+        }
+
+        System.out.println("end");
+       // assertTrue( true );
     }
 }
