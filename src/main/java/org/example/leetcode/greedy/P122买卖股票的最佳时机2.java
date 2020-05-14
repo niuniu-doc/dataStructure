@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.leetcode.greedy;
 
 public class P122买卖股票的最佳时机2 {
     class Solution {

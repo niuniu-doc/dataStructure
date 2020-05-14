@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.leetcode.list;
 
 public class P203删除链表节点 {
 

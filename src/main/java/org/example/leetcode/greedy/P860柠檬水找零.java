@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.leetcode.greedy;
 
 public class P860柠檬水找零 {
     public class Solution {

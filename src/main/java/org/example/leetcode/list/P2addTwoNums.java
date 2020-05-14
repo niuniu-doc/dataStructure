@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.leetcode.list;
 
 
 public class P2addTwoNums {

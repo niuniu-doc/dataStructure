@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package org.example.leetcode.list;
 
 /**
  * 合并两个有序链表
