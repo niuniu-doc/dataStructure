@@ -58,6 +58,19 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
         return x;
     }
 
+    private Node rightRotate(Node node) {
+        Node x = node.left;
+
+        // 右旋转
+        node.left = x.right;
+        x.right = node;
+
+        x.color = node.color;
+        node.color = RED;
+
+        return x;
+    }
+
     // 颜色翻转
     private void flipColors(Node node) {
         node.color = RED;
@@ -84,6 +97,18 @@ public class RBTree<K extends Comparable<K>, V> implements Map<K, V> {
         } else {
             // key.compareTo(node.key) == 0
             node.val = v;
+        }
+
+        if (isRed(node.right) && !isRed(node.left)) {
+            node = leftRotate(node);
+        }
+
+        if (isRed(node.left) && isRed(node.left.left)) {
+            node = rightRotate(node);
+        }
+
+        if (isRed(node.left) && isRed(node.right)) {
+            flipColors(node);
         }
 
         return node;
