@@ -1,17 +1,10 @@
 package org.example.leetcode.list;
 
-public class P141hasCycle {
-
+public class P141HasCycle {
     public static void main(String[] args) {
-        int[] arr1 = {3,2,0,-4};
-        int[] arr2 = {1,2};
-        int[] arr3 = {1};
-        System.out.println(new ListNode(arr1));
-        System.out.println(new ListNode(arr2));
-        System.out.println(new ListNode(arr3));
-        System.out.println(new Solution().hasCycle(new ListNode(arr1)));
-        System.out.println(new Solution().hasCycle(new ListNode(arr2)));
-        System.out.println(new Solution().hasCycle(new ListNode(arr3)));
+        int[] arr = {3, 2, 0, -4};
+       // System.out.println(new ListNode(arr));
+        System.out.println(new Solution().hasCycle(new ListNode(arr)));
     }
     static class ListNode {
         int val;
@@ -31,24 +24,24 @@ public class P141hasCycle {
         @Override
         public String toString() {
             StringBuilder sb = new StringBuilder();
-            sb.append("ListNode: [");
+            sb.append("ListNode [");
             ListNode cur = this;
             while (cur != null) {
-                sb.append(cur.val + " -> ");
+                sb.append(cur.val).append("->");
                 cur = cur.next;
             }
             sb.append("null]");
             return sb.toString();
         }
     }
-
-    static class Solution {
+    static public class Solution {
         public boolean hasCycle(ListNode head) {
+            if (head == null) return false;
             ListNode fast = head, slow = head;
-            while (fast.next != null && fast.next.next != null && slow.next!= null) {
+            while (fast.next != null && fast.next.next != null) {
                 fast = fast.next.next;
                 slow = slow.next;
-                if (fast == slow) return true;
+                if (slow == fast) return true;
             }
             return false;
         }

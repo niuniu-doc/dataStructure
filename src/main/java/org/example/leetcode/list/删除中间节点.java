@@ -3,9 +3,9 @@ package org.example.leetcode.list;
 public class 删除中间节点 {
     public static void main(String[] args) {
         String[] a = {"a", "b", "c", "d", "e", "f"};
-        System.out.println(new 删除中间节点.ListNode(a));
-        new Solution().deleteNode(new 删除中间节点.ListNode(a));
-        System.out.println(new 删除中间节点.ListNode(a));
+        System.out.println(new ListNode(a));
+        new Solution().deleteNode(new ListNode(a));
+        System.out.println(new ListNode(a));
     }
     private static class ListNode {
         String val;
