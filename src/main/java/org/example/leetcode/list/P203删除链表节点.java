@@ -7,8 +7,8 @@ public class P203删除链表节点 {
         ListNode head = new ListNode(nums);
         System.out.println(head.toString());
 
-        ListNode res = (new Solution()).removeElements(head, 6);
-        System.out.println(res);
+//        ListNode res = (new Solution()).removeElements(head, 6);
+//        System.out.println(res);
     }
 
     public static class ListNode {
