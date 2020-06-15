@@ -1,6 +1,6 @@
 package org.example.leetcode.list;
 
-public class P141HasCycle {
+public class P141hasCycle {
     public static void main(String[] args) {
         int[] arr = {3, 2, 0, -4};
        // System.out.println(new ListNode(arr));
