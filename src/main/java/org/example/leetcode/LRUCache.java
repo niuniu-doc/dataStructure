@@ -85,6 +85,16 @@ public class LRUCache {
         cache.addFirst(x);
         map.put(key, x); // 更新map中对应的数据
     }
+
+    public static void main(String[] args) {
+        org.example.labuladong.ds.LRUCache cache = new org.example.labuladong.ds.LRUCache(10);
+        cache.put(1, 2);
+        cache.put(2, 3);
+        cache.put(1, 3);
+        cache.put(1, 4);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+    }
 }
 
 
