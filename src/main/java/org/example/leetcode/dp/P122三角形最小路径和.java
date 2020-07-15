@@ -4,62 +4,93 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 给定三角形，每次只能移动到下一行中的相邻结点，求从顶点到底边的最小路径和
+ */
 public class P122三角形最小路径和 {
-    class Solution {
-//        int row;
-//
+    public static void main(String[] args) {
+        /**
+         * [
+         * [2],
+         * [3,4],
+         * [6,5,7],
+         * [4,1,8,3]
+         * ]
+         */
+        Integer[] a = {2};
+        Integer[] b = {3, 4};
+        Integer[] c = {6, 5, 7};
+        Integer[] d = {4,1,8,3};
+        List<List<Integer>> list = new ArrayList<>();
+        list.add(Arrays.asList(a));
+        list.add(Arrays.asList(b));
+        list.add(Arrays.asList(c));
+        list.add(Arrays.asList(d));
+        System.out.println(new Solution().minimumTotal(list));
+    }
+    static class Solution {
 //        public int minimumTotal(List<List<Integer>> triangle) {
 //            /**
-//             * 递归: 自顶向下
-//             * row: 定义总行数, level: 定义当前层, c: 定义数据所在列
-//             * 这种算法会超时
+//             * 一、暴力求解
+//             * 任意一点到三角形底边的最小路径 = min(f(i+1, j), f(i+1, j+1)) + 自身的值
+//             * f(i, j) = min(f(i+1, j), f(i+1, j+1)) + (i, j)
 //             */
-//            row = triangle.size();
-//            return helper(0, 0, triangle);
+//            return dfs(triangle, 0, 0);
 //        }
 //
-//        private int helper(int level, int c, List<List<Integer>> triangle) {
-//           if (level == row-1) return triangle.get(level).get(c);
-//           int left = helper(level+1, c, triangle);
-//           int right = helper(level+1, c+1, triangle);
-//           return Math.min(left, right) + triangle.get(level).get(c);
+//        private int dfs(List<List<Integer>> triangle, int i, int j) {
+//            if (i == triangle.size()) return 0;
+//            System.out.println("i="+i+", j="+j +", min=" + Math.min(dfs(triangle, i+1, j), dfs(triangle, i+1, j+1)) + triangle.get(i).get(j));
+//            return Math.min(dfs(triangle, i+1, j), dfs(triangle, i+1, j+1)) + triangle.get(i).get(j);
 //        }
 
-//        int row;
+//        /**
+//         * 二、递归 + 记忆化搜索
+//         */
 //        Integer[][] memo;
 //        public int minimumTotal(List<List<Integer>> triangle) {
-//            /**
-//             * 自顶向下, 记忆化搜索
-//             * row: 定义总行数, c: 定义当前列, level: 定义当前行,
-//             * memo: 存储第level行, c列的最短路径值, 避免重复计算
-//             */
-//            row = triangle.size();
-//            memo = new Integer[row][row];
-//            return helper(0, 0, triangle);
+//            memo = new Integer[triangle.size()][triangle.size()];
+//            return dfs(triangle, 0, 0);
 //        }
 //
-//        private int helper(int level, int c, List<List<Integer>> triangle) {
-//           if (memo[level][c] != null) return memo[level][c]; // 若基于该点的最短路径已经被计算过, 直接使用
-//           if (level == row-1) return memo[level][c] = triangle.get(level).get(c); // 最后一层, 将最短路径保存
-//           // 否则进行递归计算
-//           int left =  helper(level+1, c, triangle);
-//           int right = helper(level+1, c+1, triangle);
-//           return memo[level][c] = Math.min(left, right) + triangle.get(level).get(c); // 计算当前点的最短路径并保存结果
+//        private int dfs(List<List<Integer>> triangle, int i, int j) {
+//            if (i == triangle.size()) return 0;
+//            if (memo[i][j] != null) return memo[i][j];
+//            return memo[i][j] = Math.min(dfs(triangle, i+1, j), dfs(triangle, i+1, j+1)) + triangle.get(i).get(j);
 //        }
 
+        /**
+         * 三、DP, 其实就是 自顶向下递归 改为-> 自底向上递推
+         *    状态方程: dp[i][j] = Math.min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+         * @return
+         */
+//        public int minimumTotal(List<List<Integer>> triangle) {
+//            int[][] dp = new int[triangle.size()][triangle.size()];
+//            for (int i=triangle.size()-1; i>=0; i--) {
+//                for (int j=0; j<=i; j++) {
+//                    /**
+//                     * dp[3][0], dp[3][1], dp[3][2], dp[3][3]
+//                     */
+//                    if (i == triangle.size()-1) dp[i][j] = triangle.get(i).get(j);
+//                    else dp[i][j] = Math.min(dp[i+1][j], dp[i+1][j+1]) + triangle.get(i).get(j);
+//                }
+//            }
+//            return dp[0][0];
+//        }
+
+        /**
+         * 四、dp, 使用一个数字来记录min值即可
+         * @return
+         */
         public int minimumTotal(List<List<Integer>> triangle) {
-            /**
-             * dp, dp[level][c] = min(dp[level+1][c], dp[level+1][c+1]) + list.get(level).get(c)
-             */
-            int row = triangle.size();
-            int[] minlen = new int[row+1]; // 定义状态数组、用来保存当前行的最小值
-            for (int level = row-1; level >= 0; level--) {
-                // 处理每一行的数据
-                for (int c = 0; c <= level; c++) {
-                    minlen[c] = Math.min(minlen[c], minlen[c+1]) + triangle.get(level).get(c);
+            int n = triangle.size();
+            int[] dp = new int[n+1];
+            for (int i=n-1; i>=0; i--) {
+                for (int j=0; j<=i; j++) {
+                    dp[j] = Math.min(dp[j], dp[j+1]) + triangle.get(i).get(j);
                 }
             }
-            return minlen[0];
+            return dp[0];
         }
 
     }

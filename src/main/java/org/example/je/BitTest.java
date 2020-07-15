@@ -13,8 +13,8 @@ public class BitTest {
 //        int a;
 //        System.out.println(a);
 //        System.out.println(b);
-        A ab = new B();
-       ab = new B();
+//        A ab = new B();
+//       ab = new B();
     }
     public int getBit(int[] arr, int index) {
         int arrIndex = index / 32;

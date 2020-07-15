@@ -1,0 +1,17 @@
+
+
+                            QUERY: select * from car_fact_order  where
+create_date>'2020-07-02 23:59:59' and create_date<'2020-07-09 23:59:59'
+and driver_id=2009510
+and order_id>1654681532
+ORDER BY driver_id
+                            TRACE:
+
+
+
+ where
+ ((`car_fact_order`.`create_date` > '2020-07-02 23:59:59')
+ and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59')
+ and (`car_fact_order`.`driver_id` = 2009510)
+ and (`car_fact_order`.`order_id` > 1654681532))
+ order by `car_fact_order`.`driver_id`"

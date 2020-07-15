@@ -1,0 +1,272 @@
+{
+  "steps": [
+    {
+      "join_preparation": {
+        "select#": 1,
+        "steps": [
+          {
+            "expanded_query": "/* select#1 */ select `car_fact_order`.`order_id` AS `order_id`,`car_fact_order`.`order_no` AS `order_no`,`car_fact_order`.`type` AS `type`,`car_fact_order`.`push_driver_type` AS `push_driver_type`,`car_fact_order`.`order_type` AS `order_type`,`car_fact_order`.`booking_user_id` AS `booking_user_id`,`car_fact_order`.`booking_date` AS `booking_date`,`car_fact_order`.`rider_name` AS `rider_name`,`car_fact_order`.`rider_phone` AS `rider_phone`,`car_fact_order`.`booking_start_addr` AS `booking_start_addr`,`car_fact_order`.`booking_start_point` AS `booking_start_point`,`car_fact_order`.`booking_end_addr` AS `booking_end_addr`,`car_fact_order`.`booking_end_point` AS `booking_end_point`,`car_fact_order`.`fact_start_addr` AS `fact_start_addr`,`car_fact_order`.`fact_start_point` AS `fact_start_point`,`car_fact_order`.`fact_end_addr` AS `fact_end_addr`,`car_fact_order`.`fact_end_point` AS `fact_end_point`,`car_fact_order`.`city_id` AS `city_id`,`car_fact_order`.`service_type_id` AS `service_type_id`,`car_fact_order`.`car_group_id` AS `car_group_id`,`car_fact_order`.`driver_id` AS `driver_id`,`car_fact_order`.`license_plates` AS `license_plates`,`car_fact_order`.`airline_no` AS `airline_no`,`car_fact_order`.`airline_status` AS `airline_status`,`car_fact_order`.`airline_plan_date` AS `airline_plan_date`,`car_fact_order`.`airline_arr_date` AS `airline_arr_date`,`car_fact_order`.`airline_dep_code` AS `airline_dep_code`,`car_fact_order`.`airline_arr_code` AS `airline_arr_code`,`car_fact_order`.`channels_num` AS `channels_num`,`car_fact_order`.`receive_SMS` AS `receive_SMS`,`car_fact_order`.`estimated_Amount` AS `estimated_Amount`,`car_fact_order`.`airport_id` AS `airport_id`,`car_fact_order`.`status` AS `status`,`car_fact_order`.`create_by` AS `create_by`,`car_fact_order`.`update_by` AS `update_by`,`car_fact_order`.`create_date` AS `create_date`,`car_fact_order`.`update_date` AS `update_date`,`car_fact_order`.`memo` AS `memo`,`car_fact_order`.`fact_date` AS `fact_date`,`car_fact_order`.`booking_groupids` AS `booking_groupids`,`car_fact_order`.`fact_driver_id` AS `fact_driver_id`,`car_fact_order`.`fact_end_date` AS `fact_end_date`,`car_fact_order`.`imei` AS `imei`,`car_fact_order`.`version` AS `version`,`car_fact_order`.`mobel_version` AS `mobel_version`,`car_fact_order`.`sys_version` AS `sys_version`,`car_fact_order`.`platform` AS `platform`,`car_fact_order`.`pay_flag` AS `pay_flag`,`car_fact_order`.`cancelorder_penalty` AS `cancelorder_penalty`,`car_fact_order`.`chartered_id` AS `chartered_id`,`car_fact_order`.`chartered_order_no` AS `chartered_order_no`,`car_fact_order`.`is_order_others` AS `is_order_others`,`car_fact_order`.`doorman_pay_method` AS `doorman_pay_method`,`car_fact_order`.`selected_pay_flag` AS `selected_pay_flag`,`car_fact_order`.`business_id` AS `business_id`,`car_fact_order`.`go_home_status` AS `go_home_status`,`car_fact_order`.`auto_level_up` AS `auto_level_up`,`car_fact_order`.`booking_driver_id` AS `booking_driver_id`,`car_fact_order`.`is_other_drivers` AS `is_other_drivers`,`car_fact_order`.`booking_current_addr` AS `booking_current_addr`,`car_fact_order`.`booking_current_point` AS `booking_current_point`,`car_fact_order`.`booking_user_phone` AS `booking_user_phone`,`car_fact_order`.`buyout_flag` AS `buyout_flag`,`car_fact_order`.`buyout_price` AS `buyout_price`,`car_fact_order`.`booking_id_number` AS `booking_id_number`,`car_fact_order`.`estimated_id` AS `estimated_id`,`car_fact_order`.`agent_id` AS `agent_id` from `car_fact_order` where ((`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`driver_id` = 2009510) and (`car_fact_order`.`order_id` > 1654681532)) order by `car_fact_order`.`driver_id`"
+          }
+        ]
+      }
+    },
+    {
+      "join_optimization": {
+        "select#": 1,
+        "steps": [
+          {
+            "condition_processing": {
+              "condition": "WHERE",
+              "original_condition": "((`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`driver_id` = 2009510) and (`car_fact_order`.`order_id` > 1654681532))",
+              "steps": [
+                {
+                  "transformation": "equality_propagation",
+                  "resulting_condition": "((`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`order_id` > 1654681532) and multiple equal(2009510, `car_fact_order`.`driver_id`))"
+                },
+                {
+                  "transformation": "constant_propagation",
+                  "resulting_condition": "((`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`order_id` > 1654681532) and multiple equal(2009510, `car_fact_order`.`driver_id`))"
+                },
+                {
+                  "transformation": "trivial_condition_removal",
+                  "resulting_condition": "((`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`order_id` > 1654681532) and multiple equal(2009510, `car_fact_order`.`driver_id`))"
+                }
+              ]
+            }
+          },
+          {
+            "table_dependencies": [
+              {
+                "table": "`car_fact_order`",
+                "row_may_be_null": false,
+                "map_bit": 0,
+                "depends_on_map_bits": [
+                ]
+              }
+            ]
+          },
+          {
+            "ref_optimizer_key_uses": [
+              {
+                "table": "`car_fact_order`",
+                "field": "driver_id",
+                "equals": "2009510",
+                "null_rejecting": false
+              }
+            ]
+          },
+          {
+            "rows_estimation": [
+              {
+                "table": "`car_fact_order`",
+                "range_analysis": {
+                  "table_scan": {
+                    "rows": 553732,
+                    "cost": 130781
+                  },
+                  "potential_range_indices": [
+                    {
+                      "index": "PRIMARY",
+                      "usable": true,
+                      "key_parts": [
+                        "order_id"
+                      ]
+                    },
+                    {
+                      "index": "idx_driverid",
+                      "usable": true,
+                      "key_parts": [
+                        "driver_id",
+                        "order_id"
+                      ]
+                    },
+                    {
+                      "index": "idx_cdate",
+                      "usable": true,
+                      "key_parts": [
+                        "create_date",
+                        "order_id"
+                      ]
+                    }
+                  ],
+                  "setup_range_conditions": [
+                  ],
+                  "group_index_range": {
+                    "chosen": false,
+                    "cause": "not_group_by_or_distinct"
+                  },
+                  "analyzing_range_alternatives": {
+                    "range_scan_alternatives": [
+                      {
+                        "index": "PRIMARY",
+                        "ranges": [
+                          "1654681532 < order_id"
+                        ],
+                        "index_dives_for_eq_ranges": true,
+                        "rowid_ordered": true,
+                        "using_mrr": false,
+                        "index_only": false,
+                        "rows": 223792,
+                        "cost": 46315,
+                        "chosen": true
+                      },
+                      {
+                        "index": "idx_driverid",
+                        "ranges": [
+                          "2009510 <= driver_id <= 2009510 AND 1654681532 < order_id"
+                        ],
+                        "index_dives_for_eq_ranges": true,
+                        "rowid_ordered": true,
+                        "using_mrr": false,
+                        "index_only": false,
+                        "rows": 1,
+                        "cost": 2.21,
+                        "chosen": true
+                      },
+                      {
+                        "index": "idx_cdate",
+                        "ranges": [
+                          "2020-07-02 23:59:59 < create_date < 2020-07-09 23:59:59"
+                        ],
+                        "index_dives_for_eq_ranges": true,
+                        "rowid_ordered": false,
+                        "using_mrr": false,
+                        "index_only": false,
+                        "rows": 3426,
+                        "cost": 4112.2,
+                        "chosen": false,
+                        "cause": "cost"
+                      }
+                    ],
+                    "analyzing_roworder_intersect": {
+                      "intersecting_indices": [
+                        {
+                          "index": "idx_driverid",
+                          "index_scan_cost": 1,
+                          "cumulated_index_scan_cost": 1,
+                          "disk_sweep_cost": 1,
+                          "cumulated_total_cost": 2,
+                          "usable": true,
+                          "matching_rows_now": 1,
+                          "isect_covering_with_this_index": false,
+                          "chosen": true
+                        }
+                      ],
+                      "clustered_pk": {
+                        "index_scan_cost": 0.1,
+                        "cumulated_index_scan_cost": 1.1,
+                        "disk_sweep_cost": 0,
+                        "clustered_pk_scan_added_to_intersect": true,
+                        "cumulated_cost": 1.1
+                      },
+                      "rows": 1,
+                      "cost": 1.1,
+                      "covering": false,
+                      "chosen": true
+                    }
+                  },
+                  "chosen_range_access_summary": {
+                    "range_access_plan": {
+                      "type": "index_roworder_intersect",
+                      "rows": 1,
+                      "cost": 1.1,
+                      "covering": false,
+                      "clustered_pk_scan": true,
+                      "intersect_of": [
+                        {
+                          "type": "range_scan",
+                          "index": "idx_driverid",
+                          "rows": 1,
+                          "ranges": [
+                            "2009510 <= driver_id <= 2009510 AND 1654681532 < order_id"
+                          ]
+                        }
+                      ]
+                    },
+                    "rows_for_plan": 1,
+                    "cost_for_plan": 1.1,
+                    "chosen": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "considered_execution_plans": [
+              {
+                "plan_prefix": [
+                ],
+                "table": "`car_fact_order`",
+                "best_access_path": {
+                  "considered_access_paths": [
+                    {
+                      "access_type": "ref",
+                      "index": "idx_driverid",
+                      "rows": 378,
+                      "cost": 453.6,
+                      "chosen": true
+                    },
+                    {
+                      "access_type": "range",
+                      "rows": 1,
+                      "cost": 1.3,
+                      "chosen": true,
+                      "use_tmp_table": true
+                    }
+                  ]
+                },
+                "cost_for_plan": 1.3,
+                "rows_for_plan": 1,
+                "sort_cost": 1,
+                "new_cost_for_plan": 2.3,
+                "chosen": true
+              }
+            ]
+          },
+          {
+            "attaching_conditions_to_tables": {
+              "original_condition": "((`car_fact_order`.`driver_id` = 2009510) and (`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`order_id` > 1654681532))",
+              "attached_conditions_computation": [
+              ],
+              "attached_conditions_summary": [
+                {
+                  "table": "`car_fact_order`",
+                  "attached": "((`car_fact_order`.`driver_id` = 2009510) and (`car_fact_order`.`create_date` > '2020-07-02 23:59:59') and (`car_fact_order`.`create_date` < '2020-07-09 23:59:59') and (`car_fact_order`.`order_id` > 1654681532))"
+                }
+              ]
+            }
+          },
+          {
+            "clause_processing": {
+              "clause": "ORDER BY",
+              "original_clause": "`car_fact_order`.`driver_id`",
+              "items": [
+                {
+                  "item": "`car_fact_order`.`driver_id`",
+                  "equals_constant_in_where": true
+                }
+              ],
+              "resulting_clause_is_simple": true,
+              "resulting_clause": ""
+            }
+          },
+          {
+            "refine_plan": [
+              {
+                "table": "`car_fact_order`",
+                "access_type": "range"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "join_execution": {
+        "select#": 1,
+        "steps": [
+        ]
+      }
+    }
+  ]
+}
