@@ -67,14 +67,15 @@ public class TwoSums {
              * 假定 n = num.length-1
              * O((1/n)*1) + O((1/n)*2) +... + O((1/n)*n) = O((1+2+...+n)/n) = n(n+1)/2n = O(n)
              */
-            HashMap<Integer, Integer> map = new HashMap<>(nums.length); // 避免动态扩容
-            for (int i = 0; i < nums.length; i++) {
-                int complement = target - nums[i];
-                if (map.containsKey(complement) && map.get(complement) != i) {
-                    // map中已包含符合条件的数据.
-                    return new int[]{map.get(complement), i};
+            HashMap<Integer, Integer> map = new HashMap<>(nums.length);
+            for (int i=0; i< nums.length; i++){
+                int num = target - nums[i];
+
+                if (map.containsKey(num) && map.get(num) != i ){
+                    // map contains num
+                    return new int[] {map.get(num), i};
                 }
-                map.put(nums[i], i);
+                map.put(i, nums[i]);
             }
             return new int[0];
         }
