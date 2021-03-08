@@ -29,24 +29,16 @@ public class MoveZeros {
 
     class Solution {
         public int[] moveZeros(int[] nums) {
-            /**
-             * 变量 curr 代表下一个非0元素存放的位置
-             */
-            int curr = 0, i ;
+            int curr = 0, i; // cur is next none zero digit
             for (i = 0; i < nums.length; i++) {
-                if (nums[i] != 0) {
-                    /**
-                     * 这里若 i = curr, 说明之前的元素都是非0元素、无需交换, 可以是 稳定操作,
-                     * 如果全部执行交换的话、就变成了 非稳定操作, 且时间复杂度会增加
-                     */
-                    if (i != curr) {
-                        nums[curr] = nums[i]; // 是不是直接将 nums[i] 赋值给 nums[curr]即可 ?
-                        nums[i] = 0;
-                    }
-                    curr ++;
+                if (nums[i] == 0) continue; // if nums[i]==0, judge next digit
+
+                if (i != curr) { // if cur==i, all before digit more than zero
+                    nums[curr] = nums[i];
+                    nums[i] = 0;
                 }
+                curr++;
             }
-            System.out.println(Arrays.toString(nums));
             return nums;
         }
     }
