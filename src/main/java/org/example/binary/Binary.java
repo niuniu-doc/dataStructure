@@ -9,7 +9,7 @@ public class Binary {
         System.out.println("30: " + Integer.toBinaryString(30));
         System.out.println("-30: " + Integer.toBinaryString(-30));
 //        clearLowest(x, n);
-//        getN(x, n);
+        getN(x, n);
         getNMi(x, n);
         getNMi(30, n);
 //        setBit1(x, n);
