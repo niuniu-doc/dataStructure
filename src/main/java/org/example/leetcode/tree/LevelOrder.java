@@ -1,9 +1,6 @@
 package org.example.leetcode.tree;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class LevelOrder {
     class TreeNode {
@@ -24,11 +21,12 @@ public class LevelOrder {
     class Solution{
         public List<List<Integer>> LevelOrder(TreeNode root) {
             List<List<Integer>> res = new ArrayList<>();
-            Queue<TreeNode> queue = new ArrayDeque<>();
-            if (root != null) queue.add(root);
-            while (! queue.isEmpty()) {
-                List<Integer> level = new ArrayList<>();
+            Deque<TreeNode> queue = new ArrayDeque<>();
+
+            if (root != null) queue.push(root);
+            while (!queue.isEmpty()) {
                 int n = queue.size();
+                List<Integer> level = new ArrayList<>();
                 for (int i=0; i<n; i++) {
                     TreeNode node = queue.poll();
                     level.add(node.val);
@@ -37,6 +35,7 @@ public class LevelOrder {
                 }
                 res.add(level);
             }
+
             return res;
         }
     }
