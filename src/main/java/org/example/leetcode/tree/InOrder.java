@@ -1,8 +1,9 @@
 package org.example.leetcode.tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import org.example.je.A;
+
+import java.util.*;
+import java.util.concurrent.locks.Lock;
 
 public class InOrder {
     /**
@@ -57,8 +58,68 @@ public class InOrder {
             }
             return result;
         }
-
-
-
     }
+    enum Color{
+        WRITE,
+        GRAY;
+    }
+    class Solution3{
+
+        public List<Integer> preOrder(TreeNode root) {
+            List<Integer> ans = new ArrayList<>();
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            TreeNode p = root;
+
+            while (!deque.isEmpty() || p!= null) {
+                if (p != null) {
+                    deque.push(p);
+                    ans.add(p.val);
+                    p = p.left;
+                } else {
+                     TreeNode node = deque.pop();
+                     p = node.right;
+                }
+            }
+            return ans;
+        }
+
+        public List<Integer> inOrder(TreeNode root) {
+            List<Integer> ans = new ArrayList<>();
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            TreeNode p = root;
+
+            while (!deque.isEmpty() || p!=null) {
+                if (p!= null) {
+                    deque.push(p);
+                    p = p.left;
+                } else {
+                    TreeNode node = deque.pop();
+                    ans.add(node.val);
+                    p = node.right;
+                }
+            }
+            return ans;
+        }
+
+        public List<Integer> postOrder(TreeNode root) {
+            LinkedList<Integer> ans = new LinkedList<>();
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            TreeNode p = root;
+
+            while (!deque.isEmpty() || p!= null) {
+                if (p != null) {
+                    deque.push(p);
+                    ans.addFirst(p.val);
+                    p = p.right;
+                } else {
+                    TreeNode node = deque.pop();
+                    p = node.left;
+                }
+            }
+            return ans;
+        }
+        
+    }
+
+
 }
