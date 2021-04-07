@@ -38,4 +38,27 @@ public class pathSum {
            path.removeLast();
         }
     }
+
+
+    class Solution4{
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> path = new LinkedList<>();
+
+        public List<List<Integer>> pathSum(TreeNode root, Integer target) {
+            recur(root, target);
+            return ans;
+        }
+
+        public void recur(TreeNode cur, Integer target) {
+            if (cur == null) return; // 空节点
+            if (cur.left == null && cur.right == null) return; // 叶子节点
+            path.add(cur.val);
+            target -= cur.val;
+            if (target == 0 && cur.right == null && cur.left == null) {
+                ans.add(new ArrayList<>(path));
+            }
+            if (cur.left != null) recur(cur.left, target);
+            if (cur.right != null) recur(cur.right, target);
+        }
+    }
 }

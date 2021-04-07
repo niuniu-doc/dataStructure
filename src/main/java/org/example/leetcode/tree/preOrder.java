@@ -1,8 +1,8 @@
 package org.example.leetcode.tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import org.example.Stack.ArrayStack;
+
+import java.util.*;
 
 public class preOrder {
     /**
@@ -28,14 +28,40 @@ public class preOrder {
      * 时间复杂度和空间复杂度都是O(n)
      */
     class Solution {
-        List<Integer> res = new ArrayList<>();
+
         public List<Integer> preorderTraversal(TreeNode root) {
-            if (root == null) return res;
-            res.add(root.val);
-            preorderTraversal(root.left);
-            preorderTraversal(root.right);
-            return res;
+            List<Integer> ans = new ArrayList<>();
+            Deque<TreeNode> deque = new ArrayDeque<>();
+            TreeNode p = root;
+            while (p != null || !deque.isEmpty()) {
+                if (p != null) {
+                    deque.push(p);
+                    ans.add(root.val);
+                    p = p.left;
+                } else {
+                    TreeNode node = deque.pop();
+                    p = node.right;
+                }
+            }
+            return ans;
         }
+
+
+
+
+
+
+
+
+
+//        List<Integer> res = new ArrayList<>();
+//        public List<Integer> preorderTraversal(TreeNode root) {
+//            if (root == null) return res;
+//            res.add(root.val);
+//            preorderTraversal(root.left);
+//            preorderTraversal(root.right);
+//            return res;
+//        }
     }
 
     /**

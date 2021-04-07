@@ -73,7 +73,7 @@ public class InOrder {
             while (!deque.isEmpty() || p!= null) {
                 if (p != null) {
                     deque.push(p);
-                    ans.add(p.val);
+                    ans.add(root.val);
                     p = p.left;
                 } else {
                      TreeNode node = deque.pop();
@@ -118,7 +118,7 @@ public class InOrder {
             }
             return ans;
         }
-        
+
     }
 
 
